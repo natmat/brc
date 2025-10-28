@@ -1,0 +1,3 @@
+/home/user/dev/1brc/build/CMakeFiles/1brc.dir
+/home/user/dev/1brc/build/CMakeFiles/edit_cache.dir
+/home/user/dev/1brc/build/CMakeFiles/rebuild_cache.dir
