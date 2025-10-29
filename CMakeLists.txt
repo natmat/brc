@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(1brc VERSION 1.0)
+project(brc VERSION 1.0)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)

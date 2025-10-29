@@ -2,16 +2,13 @@ import random
 import string
 import time
 
-# === CONFIGURATION ===
-NUM_STATIONS = 10_000           # unique weather stations
-NUM_RECORDS = 1_000_000_000     # total records to generate
+NUM_STATIONS = 10_000
+NUM_RECORDS = 1_000_000_000
 OUTPUT_FILE = "measurements.txt"
 
-# Temperature range (in °C)
 MIN_TEMP = -99.9
 MAX_TEMP = 99.9
 
-# === HELPER FUNCTIONS ===
 def random_station_name(i: int) -> str:
     """Generate a pseudo-random but deterministic station name."""
     prefix = ''.join(random.choices(string.ascii_uppercase, k=3))
@@ -21,13 +18,11 @@ def random_temperature() -> float:
     """Generate a temperature value with one decimal place."""
     return round(random.uniform(MIN_TEMP, MAX_TEMP), 1)
 
-# === MAIN GENERATOR ===
 def generate_dataset():
     start = time.time()
 
-    # Pre-generate station names for reuse
     stations = [random_station_name(i) for i in range(NUM_STATIONS)]
-
+    
     with open(OUTPUT_FILE, "w", buffering=1024 * 1024) as f:  # 1 MB buffer
         for i in range(NUM_RECORDS):
             station = random.choice(stations)

@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -54,6 +55,7 @@ int main(int argc, char *argv[]) {
   for (auto d : data) {
     std::cout << d.first << ": " 
         << d.second.min << "/" 
+        << std::fixed << std::setprecision(1)
         << (d.second.total / d.second.count) << "/" 
         << d.second.max << std::endl;
   }
