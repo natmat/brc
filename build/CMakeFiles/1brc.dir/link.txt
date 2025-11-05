@@ -1,1 +1,0 @@
-/opt/rh/devtoolset-6/root/usr/bin/c++     CMakeFiles/1brc.dir/brc.cpp.o  -o 1brc 

@@ -1,3 +1,3 @@
-/home/user/dev/github/brc/build/CMakeFiles/rebuild_cache.dir
-/home/user/dev/github/brc/build/CMakeFiles/edit_cache.dir
-/home/user/dev/github/brc/build/CMakeFiles/1brc.dir
+/home/nathan/github/brc/build/CMakeFiles/brc.dir
+/home/nathan/github/brc/build/CMakeFiles/edit_cache.dir
+/home/nathan/github/brc/build/CMakeFiles/rebuild_cache.dir

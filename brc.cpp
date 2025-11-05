@@ -1,9 +1,13 @@
-#include <fstream>
+#include <algorithm>
+#include <chrono>
+#include <fstream>     // <-- required for std::ifstream and file.rdbuf()
 #include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <map>
 #include <sstream>
 #include <string>
+
 
 struct TempData {
   int count = 0;
@@ -12,11 +16,27 @@ struct TempData {
   double max = 0;
 };
 
+
+int countLinesInFile(std::ifstream &file)
+{
+    std::istreambuf_iterator<char> begin(file.rdbuf());
+    std::istreambuf_iterator<char> end;
+    std::size_t lineCount = std::count(begin, end, '\n');
+
+    file.clear();                 // clear EOF
+    file.seekg(0, std::ios::beg); // rewind for reuse
+
+    std::cout << "Number of lines: " << lineCount << "\n";
+    return static_cast<int>(lineCount);
+}
+
 int main(int argc, char *argv[]) {
   if (argc < 2) {
     std::cerr << "Usage: " << argv[0] << " <input_file>" << std::endl;
     return 1;
   }
+
+  auto start = std::chrono::high_resolution_clock::now();
 
   std::string filename = argv[1];
   std::ifstream infile(filename);
@@ -27,6 +47,15 @@ int main(int argc, char *argv[]) {
     std::cerr << "Error: could not open file " << filename << std::endl;
     return 1;
   }
+
+  std::cout << countLinesInFile(infile) << std::endl;
+
+  auto end = std::chrono::high_resolution_clock::now();
+  auto elapsed = end - start;
+  std::chrono::duration<double> sec = elapsed;
+  std::cout << sec.count() << " seconds\n";
+  start = end;
+
 
   std::string line;
   std::string city;
@@ -52,13 +81,18 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  for (auto d : data) {
-    std::cout << d.first << ": " 
-        << d.second.min << "/" 
-        << std::fixed << std::setprecision(1)
-        << (d.second.total / d.second.count) << "/" 
-        << d.second.max << std::endl;
-  }
+  end = std::chrono::high_resolution_clock::now();
+  elapsed = end - start;
+  sec = elapsed;
+  std::cout << sec.count() << " seconds\n";
+
+  // for (auto d : data) {
+  //   std::cout << d.first << ": " 
+  //       << d.second.min << "/" 
+  //       << std::fixed << std::setprecision(1)
+  //       << (d.second.total / d.second.count) << "/" 
+  //       << d.second.max << std::endl;
+  // }
 
   infile.close();
   return 0;
