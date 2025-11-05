@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
-project(brc VERSION 1.0)
+project(brc VERSION 1.0 LANGUAGES C CXX)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add executable
+include(CTest)
 add_executable(${PROJECT_NAME} brc.cpp)
 
 # Enable warnings
